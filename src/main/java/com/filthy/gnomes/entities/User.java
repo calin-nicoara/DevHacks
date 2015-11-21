@@ -1,5 +1,7 @@
 package com.filthy.gnomes.entities;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -18,7 +20,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "MEETING_ID")
-    private Long meetingId;
+    private Meeting meeting;
 
     @Column(name = "COMPANY_BRAND")
     private String companyBrand;
@@ -38,12 +40,12 @@ public class User {
     @Column(name = "EXIT_TIME")
     private LocalDateTime exitTime;
 
-    public Long getMeetingId() {
-        return meetingId;
+    public Meeting getMeeting() {
+        return meeting;
     }
 
-    public void setMeetingId(Long meetingId) {
-        this.meetingId = meetingId;
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
     }
 
     public String getCompanyBrand() {
