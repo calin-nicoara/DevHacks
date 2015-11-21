@@ -13,8 +13,9 @@ public class Meeting {
     @SequenceGenerator(name = "MEETING_SEQ_GEN", sequenceName = "MEETING_ID_SEQ", allocationSize = 1)
     private Long id;
 
-    @Column(name = "EMPLOYEE")
-    private String employee;
+    @ManyToOne
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
 
     @Column(name = "CODE")
     private String code;
@@ -29,15 +30,19 @@ public class Meeting {
     @Column(name = "TIME_BEGIN")
     private LocalDateTime timeBegin;
 
-    @ManyToOne
-    @JoinColumn(name = "COMPANY_ID")
-    private Company company;
+    public Long getId() {
+        return id;
+    }
 
-    public String getEmployee() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(String employee) {
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
@@ -73,23 +78,15 @@ public class Meeting {
         this.timeBegin = timeBegin;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Meeting(String employee, String code, Room location, LocalDateTime timeEnd, LocalDateTime timeBegin, Company company) {
+    public Meeting(Employee employee, String code, Room room, LocalDateTime timeEnd, LocalDateTime timeBegin) {
         this.employee = employee;
         this.code = code;
-        this.room = location;
+        this.room = room;
         this.timeEnd = timeEnd;
         this.timeBegin = timeBegin;
-        this.company = company;
     }
 
-    public Meeting() {
+    public Meeting(){
+
     }
 }

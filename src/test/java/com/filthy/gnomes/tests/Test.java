@@ -24,25 +24,11 @@ public class Test {
     @Autowired
     CompanyDAO companyDAO;
 
-    @Autowired
-    MeetingDAO meetingDAO;
-
-    @Autowired
-    VisitorDAO visitorDAO;
-
-    @Autowired
-    RoomDAO roomDAO;
-
     @org.junit.Test
     public void testCompanyDAO() {
 
-        companyDAO.save(new Company("titi","username","password"));
-        System.out.println(companyDAO.findOneByName("titi").getUsername());
+        companyDAO.save(new Company("titi"));
+        System.out.println(companyDAO.findOneByName("titi"));
 
     }
-
-
-
-
-
 }

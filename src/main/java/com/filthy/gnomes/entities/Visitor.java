@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * Created by Tyzmo on 11/21/2015.
  */
 @Entity
-@Table(name = "Visitor")
+@Table(name = "VISITOR")
 public class Visitor {
 
     @Id
