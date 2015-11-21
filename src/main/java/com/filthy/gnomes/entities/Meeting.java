@@ -20,8 +20,8 @@ public class Meeting {
     private String code;
 
     @ManyToOne
-    @JoinColumn(name = "LOCATION")
-    private Room location;
+    @JoinColumn(name = "ROOM_ID")
+    private Room room;
 
     @Column(name = "TIME_END")
     private LocalDateTime timeEnd;
@@ -49,12 +49,12 @@ public class Meeting {
         this.code = code;
     }
 
-    public Room getLocation() {
-        return location;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setLocation(Room location) {
-        this.location = location;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public LocalDateTime getTimeEnd() {
@@ -84,7 +84,7 @@ public class Meeting {
     public Meeting(String employee, String code, Room location, LocalDateTime timeEnd, LocalDateTime timeBegin, Company company) {
         this.employee = employee;
         this.code = code;
-        this.location = location;
+        this.room = location;
         this.timeEnd = timeEnd;
         this.timeBegin = timeBegin;
         this.company = company;
