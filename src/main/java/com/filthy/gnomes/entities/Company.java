@@ -34,11 +34,11 @@ public class Company {
         this.name = name;
     }
 
-    public String getVisitor() {
+    public String getUsername() {
         return username;
     }
 
-    public void setVisitor(String user) {
+    public void setUsername(String user) {
         this.username = user;
     }
 
