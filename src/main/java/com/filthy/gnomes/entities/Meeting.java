@@ -17,11 +17,11 @@ public class Meeting {
     private String employee;
 
     @ManyToOne
-    @Column(name = "CODE")
+    @JoinColumn(name = "CODE")
     private User code;
 
     @ManyToOne
-    @Column(name = "LOCATION")
+    @JoinColumn(name = "LOCATION")
     private Room location;
 
     @Column(name = "TIME_END")
@@ -34,4 +34,51 @@ public class Meeting {
     @JoinColumn(name = "COMPANY_ID")
     private Company company;
 
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
+
+    public User getCode() {
+        return code;
+    }
+
+    public void setCode(User code) {
+        this.code = code;
+    }
+
+    public Room getLocation() {
+        return location;
+    }
+
+    public void setLocation(Room location) {
+        this.location = location;
+    }
+
+    public LocalDateTime getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(LocalDateTime timeEnd) {
+        this.timeEnd = timeEnd;
+    }
+
+    public LocalDateTime getTimeBegin() {
+        return timeBegin;
+    }
+
+    public void setTimeBegin(LocalDateTime timeBegin) {
+        this.timeBegin = timeBegin;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 }
