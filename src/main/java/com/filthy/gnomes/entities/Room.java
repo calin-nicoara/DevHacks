@@ -12,10 +12,23 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROOM_SEQ_GEN")
     @SequenceGenerator(name = "ROOM_SEQ_GEN", sequenceName = "ROOM_ID_SEQ", allocationSize = 1)
-    long id;
+    private long id;
 
-    String name;
-    String details;
+    @ManyToOne
+    @JoinColumn(name ="COMPANY_ID")
+    private Company company;
+
+    private String name;
+
+    private String details;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public long getId() {
         return id;
@@ -41,30 +54,11 @@ public class Room {
         this.details = details;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Room room = (Room) o;
-
-        if (id != room.id) return false;
-        if (name != null ? !name.equals(room.name) : room.name != null) return false;
-        return !(details != null ? !details.equals(room.details) : room.details != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (details != null ? details.hashCode() : 0);
-        return result;
-    }
-
-    public Room(String name, String details) {
+    public Room(String name, String details, Company company) {
         this.name = name;
         this.details = details;
+        this.company = company;
     }
 
     public Room() {
