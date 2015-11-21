@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({ "com.filthy.gnomes.dao"})
+@ComponentScan({ "com.filthy.gnomes.dao","com.filthy.gnomes.service"})
 public class ServiceConfig {
 
     }
