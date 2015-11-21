@@ -95,4 +95,17 @@ public class User {
     public void setExitTime(LocalDateTime exitTime) {
         this.exitTime = exitTime;
     }
+
+    public User(Meeting meeting, String companyBrand, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
+        this.meeting = meeting;
+        this.companyBrand = companyBrand;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.entryTime = entryTime;
+        this.exitTime = exitTime;
+    }
+
+    public User() {
+    }
 }

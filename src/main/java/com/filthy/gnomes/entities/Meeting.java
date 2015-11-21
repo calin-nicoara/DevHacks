@@ -81,4 +81,16 @@ public class Meeting {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+    public Meeting(String employee, User code, Room location, LocalDateTime timeEnd, LocalDateTime timeBegin, Company company) {
+        this.employee = employee;
+        this.code = code;
+        this.location = location;
+        this.timeEnd = timeEnd;
+        this.timeBegin = timeBegin;
+        this.company = company;
+    }
+
+    public Meeting() {
+    }
 }

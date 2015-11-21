@@ -12,6 +12,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="COMPANY_SEQ_GEN")
     @SequenceGenerator(name = "COMPANY_SEQ_GEN", sequenceName = "COMPANY_ID_SEQ", allocationSize = 1)
+    @Transient
     Long id;
 
     String name;
@@ -71,5 +72,14 @@ public class Company {
         result = 31 * result + (user != null ? user.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    public Company(String user, String name, String password) {
+        this.user = user;
+        this.name = name;
+        this.password = password;
+    }
+
+    public Company() {
     }
 }

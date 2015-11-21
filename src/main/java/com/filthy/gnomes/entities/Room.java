@@ -61,4 +61,12 @@ public class Room {
         result = 31 * result + (details != null ? details.hashCode() : 0);
         return result;
     }
+
+    public Room(String name, String details) {
+        this.name = name;
+        this.details = details;
+    }
+
+    public Room() {
+    }
 }
