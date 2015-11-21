@@ -1,7 +1,10 @@
 package com.filthy.gnomes.dao;
 
+import com.filthy.gnomes.entities.Meeting;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 /**
  * Created by Tyzmo on 11/21/2015.
  */
-public interface MeetingDAO {
+public interface MeetingDAO extends JpaRepository<Meeting, Long>{
 }
