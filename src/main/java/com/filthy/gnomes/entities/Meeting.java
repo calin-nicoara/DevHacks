@@ -16,11 +16,13 @@ public class Meeting {
     @Column(name = "EMPLOYEE")
     private String employee;
 
+    @ManyToOne
     @Column(name = "CODE")
-    private String code;
+    private User code;
 
+    @ManyToOne
     @Column(name = "LOCATION")
-    private String location;
+    private Room location;
 
     @Column(name = "TIME_END")
     private LocalDateTime timeEnd;
