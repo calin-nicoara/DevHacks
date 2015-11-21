@@ -15,11 +15,11 @@ public class MainController {
 
     @RequestMapping(value = "/checkCredentials.json", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public DataStoreResult<User> getAllMatchedSourceProducts(
+    public Boolean checkUserCredentials(
             @RequestParam(value = "sort", required = false) String sort) {
 
-        DataStoreResult<User> dataStoreResult = null;
 
-        return dataStoreResult;
+
+        return false;
     }
 }
