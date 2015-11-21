@@ -1,9 +1,8 @@
 package com.filthy.gnomes.entities;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * Created by Tyzmo on 11/21/2015.
@@ -32,10 +31,10 @@ public class Visitor {
     private String phone;
 
     @Column(name = "ENTRY_TIME")
-    private LocalDateTime entryTime;
+    private Date entryTime;
 
     @Column(name = "EXIT_TIME")
-    private LocalDateTime exitTime;
+    private Date exitTime;
 
     public Meeting getMeeting() {
         return meeting;
@@ -69,23 +68,23 @@ public class Visitor {
         this.phone = phone;
     }
 
-    public LocalDateTime getEntryTime() {
+    public Date getEntryTime() {
         return entryTime;
     }
 
-    public void setEntryTime(LocalDateTime entryTime) {
+    public void setEntryTime(Date entryTime) {
         this.entryTime = entryTime;
     }
 
-    public LocalDateTime getExitTime() {
+    public Date getExitTime() {
         return exitTime;
     }
 
-    public void setExitTime(LocalDateTime exitTime) {
+    public void setExitTime(Date exitTime) {
         this.exitTime = exitTime;
     }
 
-    public Visitor(Meeting meeting, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
+    public Visitor(Meeting meeting, String name, String email, String phone, Date entryTime, Date exitTime) {
         this.meeting = meeting;
         this.name = name;
         this.email = email;

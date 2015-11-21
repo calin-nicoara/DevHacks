@@ -1,8 +1,12 @@
 package com.filthy.gnomes.entities;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
+@Transactional
 @Entity
 @Table(name = "MEETING")
 public class Meeting {
@@ -25,10 +29,10 @@ public class Meeting {
     private Room room;
 
     @Column(name = "TIME_END")
-    private LocalDateTime timeEnd;
+    private Date timeEnd;
 
     @Column(name = "TIME_BEGIN")
-    private LocalDateTime timeBegin;
+    private Date timeBegin;
 
     public Long getId() {
         return id;
@@ -62,23 +66,23 @@ public class Meeting {
         this.room = room;
     }
 
-    public LocalDateTime getTimeEnd() {
+    public Date getTimeEnd() {
         return timeEnd;
     }
 
-    public void setTimeEnd(LocalDateTime timeEnd) {
+    public void setTimeEnd(Date timeEnd) {
         this.timeEnd = timeEnd;
     }
 
-    public LocalDateTime getTimeBegin() {
+    public Date getTimeBegin() {
         return timeBegin;
     }
 
-    public void setTimeBegin(LocalDateTime timeBegin) {
+    public void setTimeBegin(Date timeBegin) {
         this.timeBegin = timeBegin;
     }
 
-    public Meeting(Employee employee, String code, Room room, LocalDateTime timeEnd, LocalDateTime timeBegin) {
+    public Meeting(Employee employee, String code, Room room, Date timeEnd, Date timeBegin) {
         this.employee = employee;
         this.code = code;
         this.room = room;
