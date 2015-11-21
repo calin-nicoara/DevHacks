@@ -27,5 +27,36 @@
 
 }
 
+.h3Buildo1{
+    padding: 20px;
+    color: #2b669a;
+    font-size: 25px;
+    font-family: Tahoma;
+    position: absolute;
+}
+
+th{
+    border:0;
+    background-color: #2b669a;
+    color:white;
+    font-stretch: extra-expanded;
+}
+
+.new-meeting{
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 25px;
+    height: 80%;
+    width: 80%;
+
+}
+
+.new-header{
+    font-family: Tahoma;
+    position: absolute;
+    color: #2b669a;
+
+}
+
 
 
