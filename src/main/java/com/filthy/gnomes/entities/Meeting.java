@@ -18,7 +18,7 @@ public class Meeting {
 
     @ManyToOne
     @JoinColumn(name = "CODE")
-    private User code;
+    private Visitor code;
 
     @ManyToOne
     @JoinColumn(name = "LOCATION")
@@ -42,11 +42,11 @@ public class Meeting {
         this.employee = employee;
     }
 
-    public User getCode() {
+    public Visitor getCode() {
         return code;
     }
 
-    public void setCode(User code) {
+    public void setCode(Visitor code) {
         this.code = code;
     }
 
@@ -82,7 +82,7 @@ public class Meeting {
         this.company = company;
     }
 
-    public Meeting(String employee, User code, Room location, LocalDateTime timeEnd, LocalDateTime timeBegin, Company company) {
+    public Meeting(String employee, Visitor code, Room location, LocalDateTime timeEnd, LocalDateTime timeBegin, Company company) {
         this.employee = employee;
         this.code = code;
         this.location = location;

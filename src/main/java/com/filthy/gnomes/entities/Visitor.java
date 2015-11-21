@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
  * Created by Tyzmo on 11/21/2015.
  */
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "Visitor")
+public class Visitor {
 
     @Id
     @Column(name = "ID")
@@ -85,7 +85,7 @@ public class User {
         this.exitTime = exitTime;
     }
 
-    public User(Meeting meeting, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
+    public Visitor(Meeting meeting, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
         this.meeting = meeting;
         this.name = name;
         this.email = email;
@@ -94,6 +94,6 @@ public class User {
         this.exitTime = exitTime;
     }
 
-    public User() {
+    public Visitor() {
     }
 }
