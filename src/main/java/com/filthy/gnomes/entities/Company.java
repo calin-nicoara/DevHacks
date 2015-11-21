@@ -11,7 +11,7 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="COMPANY_SEQ_GEN")
-    @SequenceGenerator(name = "COMPANY_SEQ_GEN", sequenceName = "USER_ID_SEQ", allocationSize = 1)
+    @SequenceGenerator(name = "COMPANY_SEQ_GEN", sequenceName = "COMPANY_ID_SEQ", allocationSize = 1)
     long id;
 
     String name;
