@@ -22,9 +22,6 @@ public class User {
     @JoinColumn(name = "MEETING_ID")
     private Meeting meeting;
 
-    @Column(name = "COMPANY_BRAND")
-    private String companyBrand;
-
     @Column(name = "NAME")
     private String name;
 
@@ -46,14 +43,6 @@ public class User {
 
     public void setMeeting(Meeting meeting) {
         this.meeting = meeting;
-    }
-
-    public String getCompanyBrand() {
-        return companyBrand;
-    }
-
-    public void setCompanyBrand(String companyBrand) {
-        this.companyBrand = companyBrand;
     }
 
     public String getName() {
@@ -96,9 +85,8 @@ public class User {
         this.exitTime = exitTime;
     }
 
-    public User(Meeting meeting, String companyBrand, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
+    public User(Meeting meeting, String name, String email, String phone, LocalDateTime entryTime, LocalDateTime exitTime) {
         this.meeting = meeting;
-        this.companyBrand = companyBrand;
         this.name = name;
         this.email = email;
         this.phone = phone;
