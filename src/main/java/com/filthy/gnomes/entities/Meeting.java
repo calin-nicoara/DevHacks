@@ -28,8 +28,8 @@ public class Meeting {
     @Column(name = "TIME_BEGIN")
     private LocalDateTime timeBegin;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "COMPANY_ID")
-    private String company;
+    private Company company;
 
 }
