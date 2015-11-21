@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface EmployeeDAO extends JpaRepository<Employee, Long> {
 
     Employee findOneById(Long id);
+    Employee findOneByUsername(String username);
 }

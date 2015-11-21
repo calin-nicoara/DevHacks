@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface MeetingDAO extends JpaRepository<Meeting, Long>{
 
     Meeting findOneById(Long id);
+
+    Meeting findOneByCode(String code);
 }
