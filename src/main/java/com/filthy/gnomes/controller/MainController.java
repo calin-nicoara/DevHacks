@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Created by Tyzmo on 11/21/2015.
  */
@@ -55,5 +59,15 @@ public class MainController {
         }catch(Exception e){
             return false;
         }
+    }
+
+    @RequestMapping(value= "/meetings/findByEmployee/{id}", method = RequestMethod.GET)
+    public List<Meeting> getMeetingsByEmployee(@PathVariable long id) {
+        Employee employee = employeeDAO.findOne(id);
+        List<Meeting> meetings =  meetingDAO.findByEmployee(employee)
+                .stream()
+                .filter(meeting -> meeting.getTimeEnd().getTime() < new Date().getTime())
+                .collect(Collectors.toList());
+        return meetings;
     }
 }
