@@ -73,8 +73,8 @@ public class Company {
         return result;
     }
 
-    public Company(String visitor, String name, String password) {
-        this.username = visitor;
+    public Company(String username, String name, String password) {
+        this.username = username;
         this.name = name;
         this.password = password;
     }
