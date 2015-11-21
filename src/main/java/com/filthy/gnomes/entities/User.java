@@ -1,5 +1,7 @@
 package com.filthy.gnomes.entities;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
