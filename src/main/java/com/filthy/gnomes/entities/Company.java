@@ -15,7 +15,7 @@ public class Company {
     Long id;
 
     String name;
-    String visitor;
+    String username;
     String password;
 
     public Long getId() {
@@ -35,11 +35,11 @@ public class Company {
     }
 
     public String getVisitor() {
-        return visitor;
+        return username;
     }
 
     public void setVisitor(String user) {
-        this.visitor = user;
+        this.username = user;
     }
 
     public String getPassword() {
@@ -59,7 +59,7 @@ public class Company {
 
         if (id != company.id) return false;
         if (name != null ? !name.equals(company.name) : company.name != null) return false;
-        if (visitor != null ? !visitor.equals(company.visitor) : company.visitor != null) return false;
+        if (username != null ? !username.equals(company.username) : company.username != null) return false;
         return !(password != null ? !password.equals(company.password) : company.password != null);
 
     }
@@ -68,13 +68,13 @@ public class Company {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (visitor != null ? visitor.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 
     public Company(String visitor, String name, String password) {
-        this.visitor = visitor;
+        this.username = visitor;
         this.name = name;
         this.password = password;
     }
