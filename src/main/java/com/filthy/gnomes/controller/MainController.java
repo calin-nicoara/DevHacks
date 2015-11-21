@@ -2,7 +2,8 @@ package com.filthy.gnomes.controller;
 
 import com.filthy.gnomes.dao.EmployeeDAO;
 import com.filthy.gnomes.dao.MeetingDAO;
-import com.filthy.gnomes.dao.VisitorDAO;
+import com.filthy.gnomes.dao.RoomDAO;
+import com.filthy.gnomes.dto.GreetingDTO;
 import com.filthy.gnomes.entities.Employee;
 import com.filthy.gnomes.entities.Meeting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +22,21 @@ public class MainController {
     @Autowired
     private MeetingDAO meetingDAO;
 
+    @Autowired
+    private RoomDAO roomDAO;
+
     @RequestMapping(value = "/checkVisitorCode", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Boolean checkVisitorCode(@RequestParam(value = "code", required = true) String code) {
+    public GreetingDTO checkVisitorCode(@RequestParam(value = "code", required = true) String code) {
         try{
             Meeting meeting = meetingDAO.findOneByCode(code);
             if(meeting!=null){
-                return true;
+                return new GreetingDTO(meeting.getEmployee().getName(), meeting.getRoom().getName(), meeting.getRoom().getDetails());
             }else{
-                return false;
+                return new GreetingDTO();
             }
         }catch(Exception e){
-            return false;
+            return new GreetingDTO();
         }
     }
 
