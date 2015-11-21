@@ -14,9 +14,9 @@ public class Company {
     @SequenceGenerator(name = "COMPANY_SEQ_GEN", sequenceName = "COMPANY_ID_SEQ", allocationSize = 1)
     Long id;
 
-    String name;
-    String username;
-    String password;
+    private String name;
+    private String username;
+    private String password;
 
     public Long getId() {
         return id;

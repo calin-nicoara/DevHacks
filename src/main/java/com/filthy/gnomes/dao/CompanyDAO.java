@@ -11,4 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface CompanyDAO extends JpaRepository<Company, Long>{
 
     Company findOneByName(String name);
+
+    Company findOneById(Long id);
+
 }

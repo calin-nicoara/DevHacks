@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface MeetingDAO extends JpaRepository<Meeting, Long>{
+
+    Meeting findOneById(Long id);
 }
