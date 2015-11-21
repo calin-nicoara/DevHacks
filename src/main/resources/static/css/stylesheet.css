@@ -46,8 +46,8 @@ th{
     margin: 0 auto;
     padding: 20px;
     font-size: 25px;
-    height: 80%;
-    width: 80%;
+    height: 60%;
+    width: 60%;
 
 }
 
@@ -55,8 +55,35 @@ th{
     font-family: Tahoma;
     position: absolute;
     color: #2b669a;
-
 }
+
+.imgHeader{
+    border-radius: 10px;
+    border-color: #2b669a;
+    margin: auto;
+    height: 50%;
+    width: 50%;
+}
+
+.h3Meet {
+    padding-left: 50px;
+    margin: 0 auto;
+    color: #2b669a;
+    font-size: 25px;
+    font-family: Tahoma;
+    position: absolute;
+}
+
+.formMeet{
+    padding-top: 50px;
+}
+
+.labelCust{
+    font-size: 20px;
+    padding-left: 180px;
+    color: #2b669a;
+}
+
 
 
 
