@@ -57,6 +57,11 @@ th{
     color: #2b669a;
 }
 
+.meetingTable{
+    height: 400px;
+    width: 100%;
+}
+
 .imgHeader{
     border-radius: 10px;
     border-color: #2b669a;
@@ -102,7 +107,8 @@ th{
 
 }
 .codeButt{
-    margin-left: 75px;
+    margin-top: 25px;
+    margin-left: 45px;
 
 }
 
