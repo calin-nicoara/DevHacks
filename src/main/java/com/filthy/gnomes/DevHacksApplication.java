@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-@Import({ ServiceConfig.class, WebSecurityConfig.class})
+@Import({ ServiceConfig.class})
 public class DevHacksApplication {
 
     public static void main(String[] args) {
