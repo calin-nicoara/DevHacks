@@ -1,11 +1,8 @@
 package com.filthy.gnomes.controller;
 
-import com.filthy.gnomes.dao.EmployeeDAO;
-import com.filthy.gnomes.dao.MeetingDAO;
-import com.filthy.gnomes.dao.RoomDAO;
+import com.filthy.gnomes.dao.*;
 import com.filthy.gnomes.dto.GreetingDTO;
-import com.filthy.gnomes.entities.Employee;
-import com.filthy.gnomes.entities.Meeting;
+import com.filthy.gnomes.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +25,38 @@ public class MainController {
 
     @Autowired
     private RoomDAO roomDAO;
+
+    @Autowired
+    private VisitorDAO visitorDAO;
+
+    @RequestMapping(value= "/addMeeting", method = RequestMethod.POST)
+    public @ResponseBody String addMeeting(
+            @RequestParam String timeBegin,
+            @RequestParam String timeEnd,
+            @RequestParam String visitorName,
+            @RequestParam String visitorEmail,
+            @RequestParam String visitorTelefon,
+            @RequestParam String roomId,
+            @RequestParam String employeeId
+    ) {
+
+        Room room = roomDAO.findOneById(Long.parseLong(roomId));
+        Employee employee = employeeDAO.findOneById(Long.parseLong(employeeId));
+
+        Visitor visitor = new Visitor();
+        visitor.setName(visitorName);
+        visitor.setEmail(visitorEmail);
+        visitor.setPhone(visitorTelefon);
+
+        Visitor visitorSaved = visitorDAO.saveAndFlush(visitor);
+        Meeting meeting = new Meeting(employee, visitor, "111122", room, new Date(Long.parseLong(timeEnd)),
+                                                                         new Date(Long.parseLong(timeBegin)));
+
+        meetingDAO.saveAndFlush(meeting);
+
+
+        return "";
+    }
 
     @RequestMapping(value = "/checkVisitorCode", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)

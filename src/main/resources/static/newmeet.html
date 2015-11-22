@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="css/jquery-ui.structure.css">
     <link rel="stylesheet" href="css/jquery-ui.theme.css">
     <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
 
     <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script type="text/javascript" src="js/jquery-ui.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
 </head>
 <body background="images/bkgrnd.jpg">
 <div class="container">
     <div class="row" style="margin-top: 150px">
         <div class="col-lg-6">
-            <form class="form-horizontal">
+            <form class="form-horizontal" id="formMeeting">
                 <div class="form-group">
                     <label for="nameVisitor" class="col-lg-4 control-label">Name of visitor</label>
 
@@ -63,7 +66,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-4 col-lg-1">
-                        <button type="submit" class="btn btn-default">Save</button>
+                        <button type="submit" class="btn btn-default" id="submitButton">Save</button>
                     </div>
                     <div class="col-lg-6 col-lg-offset-1">
                         <button class="btn btn-default">Back</button>
@@ -77,33 +80,67 @@
     </div>
 </div>
 <script>
-    $.ajax({
-        url: "/meetings/-3",
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            $('#startTime').val(data.timeBegin);
-            $('#endTime').val(data.timeEnd)
+    var employeeId;
+    $(document).ready(function() {
+        $('#startTime').datetimepicker();
+        $('#endTime').datetimepicker();
+        var editMeeting = false;
+        employeeId = getCookie("employeeId");
+        if(editMeeting) {
+            $.ajax({
+                url: "/meetings/-3",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#startTime').val(data.timeBegin);
+                    $('#endTime').val(data.timeEnd);
+                }
+            });
+            $.ajax({
+                url: "/meetings/-3/visitor",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#nameVisitor').val(data.name);
+                    $('#emailVisitor').val(data.email);
+                    $('#telVisitor').val(data.phone);
+                }
+            });
+            $.ajax({
+                url: "/meetings/-3/room",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#meetRoom').val(data.name);
+                }
+            });
         }
+
+
+        $("#submitButton").on('click', function(evt) {
+            evt.preventDefault();
+            $.ajax({
+                url: "http://localhost:8080/addMeeting",
+                method: "post",
+                data: {
+                    timeBegin: moment($('#startTime').val(), "YYYY/MM/DD hh:mm").unix(),
+                    timeEnd:  moment($('#endTime').val(), "YYYY/MM/DD hh:mm").unix(),
+                    visitorName: $('#nameVisitor').val(),
+                    visitorEmail: $('#emailVisitor').val(),
+                    visitorTelefon: $('#telVisitor').val(),
+                    roomId: $('#meetRoom').val(),
+                    employeeId: employeeId
+                },
+                success: function(data) {
+
+                }
+            });
+
+        });
+
+
     });
-    $.ajax({
-        url: "/meetings/-3/visitor",
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            $('#nameVisitor').val(data.name);
-            $('#emailVisitor').val(data.email);
-            $('#telVisitor').val(data.phone)
-        }
-    });
-    $.ajax({
-        url: "/meetings/-3/room",
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            $('#meetRoom').val(data.name);
-        }
-    });
+
 </script>
 </body>
 </html>
