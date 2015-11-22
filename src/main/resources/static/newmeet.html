@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>ReceptioneraPorno</title>
@@ -15,44 +14,96 @@
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 </head>
-<html>
+<body background="images/bkgrnd.jpg">
+<div class="container">
+    <div class="row" style="margin-top: 150px">
+        <div class="col-lg-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="nameVisitor" class="col-lg-4 control-label">Name of visitor</label>
 
-    <div class="container-fluid centerDiv">
-        <div class="new-meeting">
-            <div class="imgHeader">
-                <img src="images/new meeting.png" class="img-responsive">
-                <h3 class="h2Adtext">Create a new meeting</h3>
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="nameVisitor" placeholder="Visitor's name">
+                    </div>
                 </div>
-            <form class="formMeet">
-            <div class="form-group">
-                <label for="nameVisitor" class="labelCust">Name of visitor</label>
-                <input type="text" class="form-control" id="nameVisitor" placeholder="Visitor's name">
-            </div>
-            <div class="form-group">
-                <label for="emailVisitor" class="labelCust">E-mail address</label>
-                <input type="email" class="form-control" id="emailVisitor" placeholder="E-mail address">
+                <div class="form-group">
+                    <label for="emailVisitor" class="col-lg-4 control-label">E-mail address</label>
+
+                    <div class="col-lg-8">
+                        <input type="email" class="form-control" id="emailVisitor" placeholder="E-mail address">
+                    </div>
                 </div>
-            <div class="form-group">
-                <label for="telVisitor" class="labelCust">Telephone</label>
-                <input type="text" class="form-control" id="telVisitor" placeholder="Visitor's telephone">
+                <div class="form-group">
+                    <label for="telVisitor" class="col-lg-4 control-label">Telephone</label>
+
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="telVisitor" placeholder="Visitor's telephone">
+                    </div>
                 </div>
-            <div class="form-group">
-                <label for="startTime" class="labelCust">Start time</label>
-                <input type="text" class="form-control" id="startTime" placeholder="Start time">
+                <div class="form-group">
+                    <label for="startTime" class="col-lg-4 control-label">Start time</label>
+
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="startTime" placeholder="Start time">
+                    </div>
                 </div>
-            <div class="form-group">
-                <label for="endTime" class="labelCust">End time</label>
-                <input type="text" class="form-control" id="endTime" placeholder="End time">
+                <div class="form-group">
+                    <label for="endTime" class="col-lg-4 control-label">End time</label>
+
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="endTime" placeholder="End time">
+                    </div>
                 </div>
-            <div class="form-group">
-                <label for="meetRoom" class="labelCust">Meeting Room</label>
-                <input type="text" class="form-control" id="meetRoom" placeholder="Meeting room">
-            </div>
+                <div class="form-group">
+                    <label for="meetRoom" class="col-lg-4 control-label">Meeting Room</label>
+
+                    <div class="col-lg-8">
+                        <input type="text" class="form-control" id="meetRoom" placeholder="Meeting room">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-4 col-lg-1">
+                        <button type="submit" class="btn btn-default">Save</button>
+                    </div>
+                    <div class="col-lg-6 col-lg-offset-1">
+                        <button class="btn btn-default">Back</button>
+                    </div>
+                </div>
             </form>
-            </div>
-
-
-<body>
-
+        </div>
+    <div class="col-lg-5 col-lg-offset-1">
+        <img src="images/newmeeting.png" class="img-responsive" alt="Responsive image">
+    </div>
+    </div>
+</div>
+<script>
+    $.ajax({
+        url: "/meetings/-3",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#startTime').val(data.timeBegin);
+            $('#endTime').val(data.timeEnd)
+        }
+    });
+    $.ajax({
+        url: "/meetings/-3/visitor",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#nameVisitor').val(data.name);
+            $('#emailVisitor').val(data.email);
+            $('#telVisitor').val(data.phone)
+        }
+    });
+    $.ajax({
+        url: "/meetings/-3/room",
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $('#meetRoom').val(data.name);
+        }
+    });
+</script>
 </body>
 </html>
