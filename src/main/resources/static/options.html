@@ -34,13 +34,9 @@
                 <button type="button" class="btn btn-default btn-lg" aria-label="Add Meeting">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true">Add Meeting</span>
                 </button>
-            </div>
+                </div>
         </div>
-    </div>
-</div>
 
-    </div>
-</div>
 </body>
 
 <script>
@@ -75,7 +71,14 @@
                 "<td>" + moment(startDate).format("h:mm") + " - " +
                        + " " + moment(endDate).format("h:mm") + "</td>" +
                 "<td>" + meeting.room.details +"</td>" +
-                "</tr>");
+                        "<td>" + "<button type=\"button\" class=\"btn btn-default\" aria-label=\"remove\">" +
+                         "<span class=\"glyphicon glyphicon-wrench\" aria-hidden=\"true\"></span>" +
+                        "</button> <td>" +
+                        "<button type=\"button\" class=\"btn btn-default\" aria-label=\"remove\">" +
+                        "<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>" +
+                        "</button>" +
+                        "</td></td>" +
+                         "</tr>");
     }
 
 </script>
