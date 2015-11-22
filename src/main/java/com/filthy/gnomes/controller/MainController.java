@@ -53,7 +53,7 @@ public class MainController {
             if(employee==null || !employee.getPassword().equals(password)){
                 return "{\"result\": \"rau\"}";
             }else{
-                return "{\"result\": \"bine\"}";
+                return "{\"result\": \"bine\", \"employeeId\":\""+ employee.getId() +"\"}";
             }
         }catch(Exception e){
             return "{\"result\": \"rau\"}";
