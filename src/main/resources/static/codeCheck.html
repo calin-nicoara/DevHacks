@@ -11,7 +11,6 @@
 
     <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <!--<script type="text/javascript" src="js/scripts.js"></script>-->
 </head>
 <body background="images/bkgrnd.jpg">
 <div class="container-fluid centerDiv">
@@ -21,7 +20,7 @@
             <div class="form-group">
                 <div class="codeDiv">
                 <input type="text" class="form-control" id="code" placeholder="Personal Access Code">
-
+                <button type="button" class="btn btn-warning codeButt" id="code">Confirm appointment</button>
                 <script>
 
                     $("input[id='code']").keypress(function (e) {
@@ -40,7 +39,22 @@
                                         var visitor = data.visitorName;
 
                                         if (roomName != null && visitor != null && roomDetails!=null) {
-                                            alert('Welcome, ' + visitor + '\n You are expected in room ' + roomName + ' located at ' + roomDetails);
+                                            return "<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">" +
+                                            " <div class=\"modal-dialog\" role=\"document\">" +
+                                                    "<div class=\"modal-content\">" +
+                                                    "<div class=\"modal-header\">"  +
+                                                    "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                                                    "<h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4>" +
+                                                    "</div>" +
+                                                    "<div class=\"modal-body\">" +
+                                                    "Welcome, " + visitor + ", your appointment is scheduled to take place in " + roomName + " which is located in " + roomDetails "." +
+                                                    "</div>" +
+                                                    "<div class=\"modal-footer\">" +
+                                                    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>" +
+                                                    "<button type=\"button\" class=\"btn btn-primary\">Save changes</button>" +
+                                                    "</div>" +
+                                                    "</div>" +
+                                                    "</div>"
                                         } else {
                                             alert('Invalid Code')
                                         }
