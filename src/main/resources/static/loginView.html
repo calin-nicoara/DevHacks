@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="css/jquery-ui.theme.css">
     <link rel="stylesheet" href="css/stylesheet.css">
 
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <!--<script type="text/javascript" src="js/scripts.js"></script>-->
 </head>
 <html>
 <body>
@@ -24,16 +25,16 @@
         </div>
     </div>
     <div class="col-md-8">
-        <form action="/checkCredentials" method="get">
+        <form id="form" action="/checkCredentials" method="get">
             <div class="form-group">
-                <label for="userEmai1">Email address</label>
-                <input name="username" class="form-control" id="userEmai1" placeholder="Email">
+                <label for="userEmail">Email address</label>
+                <input name="username" class="form-control" id="userEmail" placeholder="Email">
             </div>
             <div class="form-group">
                 <label for="userPassword">Password</label>
                 <input name="password" type="password" class="form-control" id="userPassword" placeholder="Password">
 
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button id="submitButton" type="submit" class="btn btn-default">Submit</button>
             </div>
         </form>
 
@@ -41,4 +42,24 @@
 </div>
 
 </body>
+
+<script>
+    $("#submitButton").on('click', function(event){
+        event.preventDefault();
+        $.ajax({
+            url: "/checkCredentials",
+            method: "GET",
+            data: {username: $('#userEmail').val(), password: $("#userPassword").val()},
+            dataType: "json",
+            success: function (data) {
+                if (data.result === "bine") {
+                    window.location = "http://localhost:8080/options.html";
+                } else {
+                    console.log("Naspa");
+                }
+            }
+        });
+    });
+
+</script>
 </html>
