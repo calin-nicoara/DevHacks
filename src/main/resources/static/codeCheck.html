@@ -21,9 +21,37 @@
             <div class="form-group">
                 <div class="codeDiv">
                 <input type="text" class="form-control" id="code" placeholder="Personal Access Code">
-                </div>
-                <!--<button type="button" class="btn btn-warning codeButt" aria-label="confirmMeeting">Confirm Meeting
-                </button>-->
+
+                <script>
+
+                    $("input[id='code']").keypress(function (e) {
+                        if (e.which == 13) {
+
+                                event.preventDefault();
+                                $.ajax({
+                                    url: "/checkVisitorCode",
+                                    method: "GET",
+                                    data: {code: $('#code').val()},
+                                    dataType: "json",
+                                    success: function (data) {
+
+                                        var roomName = data.roomName;
+                                        var roomDetails = data.roomDetails;
+                                        var visitor = data.visitorName;
+
+                                        if (roomName != null && visitor != null && roomDetails!=null) {
+                                            alert('Welcome, ' + visitor + '\n You are expected in room ' + roomName + ' located at ' + roomDetails);
+                                        } else {
+                                            alert('Invalid Code')
+                                        }
+
+
+                                    }
+                                });
+                        };
+                    });
+                </script>
+
             </div>
         </form>
     </div>
