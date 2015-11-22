@@ -21,6 +21,11 @@ public class Meeting {
     @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
+
+    @ManyToOne
+    @JoinColumn(name = "visitor_id")
+    private Visitor visitor;
+
     @Column(name = "CODE")
     private String code;
 
@@ -82,8 +87,17 @@ public class Meeting {
         this.timeBegin = timeBegin;
     }
 
-    public Meeting(Employee employee, String code, Room room, Date timeEnd, Date timeBegin) {
+    public Visitor getVisitor() {
+        return visitor;
+    }
+
+    public void setVisitor(Visitor visitor) {
+        this.visitor = visitor;
+    }
+
+    public Meeting(Employee employee, Visitor visitor, String code, Room room, Date timeEnd, Date timeBegin) {
         this.employee = employee;
+        this.visitor = visitor;
         this.code = code;
         this.room = room;
         this.timeEnd = timeEnd;

@@ -17,10 +17,6 @@ public class Visitor {
     @SequenceGenerator(name = "USER_SEQ_GEN", sequenceName = "USER_ID_SEQ", allocationSize = 1)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "MEETING_ID")
-    private Meeting meeting;
-
     @Column(name = "NAME")
     private String name;
 
@@ -35,14 +31,6 @@ public class Visitor {
 
     @Column(name = "EXIT_TIME")
     private Date exitTime;
-
-    public Meeting getMeeting() {
-        return meeting;
-    }
-
-    public void setMeeting(Meeting meeting) {
-        this.meeting = meeting;
-    }
 
     public String getName() {
         return name;
@@ -84,8 +72,7 @@ public class Visitor {
         this.exitTime = exitTime;
     }
 
-    public Visitor(Meeting meeting, String name, String email, String phone, Date entryTime, Date exitTime) {
-        this.meeting = meeting;
+    public Visitor(String name, String email, String phone, Date entryTime, Date exitTime) {
         this.name = name;
         this.email = email;
         this.phone = phone;

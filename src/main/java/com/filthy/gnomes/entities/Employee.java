@@ -63,6 +63,10 @@ public class Employee {
         this.password = password;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Employee(String name, String email, Company company, String username, String password) {
         this.name = name;
         this.email = email;
