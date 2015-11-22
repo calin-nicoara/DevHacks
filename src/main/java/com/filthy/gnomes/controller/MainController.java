@@ -49,8 +49,8 @@ public class MainController {
         visitor.setPhone(visitorTelefon);
 
         Visitor visitorSaved = visitorDAO.saveAndFlush(visitor);
-        Meeting meeting = new Meeting(employee, visitor, "111122", room, new Date(Long.parseLong(timeEnd)),
-                                                                         new Date(Long.parseLong(timeBegin)));
+        Meeting meeting = new Meeting(employee, visitor, "111122", room, new Date(Long.parseLong(timeEnd)*1000),
+                                                                         new Date(Long.parseLong(timeBegin)*1000));
 
         meetingDAO.saveAndFlush(meeting);
 
@@ -94,7 +94,7 @@ public class MainController {
         Employee employee = employeeDAO.findOne(id);
         List<Meeting> meetings =  meetingDAO.findByEmployee(employee)
                 .stream()
-                .filter(meeting -> meeting.getTimeEnd().getTime() < new Date().getTime())
+                .filter(meeting -> meeting.getTimeEnd().getTime() > new Date().getTime())
                 .collect(Collectors.toList());
         return meetings;
     }
