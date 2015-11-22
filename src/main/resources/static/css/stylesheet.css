@@ -11,14 +11,16 @@
 
 }
 
-.h1Logo{
-    font-family: "Bernard MT Condensed";
-    font-size: 56px;
-    color: #2b542c;
+.imgLogo{
+    height: 60%;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+
 }
 
 .h2Adtext{
-    font-family: "Helvetica Neue";
+    font-family: "Bernard MT Condensed";
     font-size: 18px;
     color: #0f0f0f;
 }
