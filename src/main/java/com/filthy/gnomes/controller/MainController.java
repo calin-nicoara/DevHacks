@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @RestController
 public class MainController {
 
+    @
+
     @Autowired
     private EmployeeDAO employeeDAO;
 
@@ -45,19 +47,18 @@ public class MainController {
     }
 
     @RequestMapping(value = "/checkCredentials", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public Boolean checkUserCredentials(
+    public String checkUserCredentials(
             @RequestParam(value = "username", required = true) String username,
             @RequestParam(value = "password", required = true) String password) {
         try{
             Employee employee = employeeDAO.findOneByUsername(username);
             if(employee==null || !employee.getPassword().equals(password)){
-                return false;
+                return "{\"result\": \"rau\"}";
             }else{
-                return true;
+                return "{\"result\": \"bine\"}";
             }
         }catch(Exception e){
-            return false;
+            return "{\"result\": \"rau\"}";
         }
     }
 
