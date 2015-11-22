@@ -15,16 +15,15 @@
     <script type="text/javascript" src="js/scripts.js"></script>
 </head>
 <body>
-<div class="container-fluid centerDiv">
-    <div class="col-md-4">
-        <img src="images/buildo1.png" class="img-responsive" alt="buildo1">
+    <div class="container-fluid centerDiv">
+        <div class="col-md-4">
+            <img src="images/buildo1.png" class="img-responsive" alt="buildo1">
+            <h1 class="h3Buildo1">Scheduled Meetings</h1>
 
-        <h1 class="h3Buildo1">Scheduled Meetings</h1>
 
-
-    </div>
-    <div class="col-md-8">
-        <div class="row">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
             <div class="table-responsive">
                 <table class="table">
                     <tbody>
@@ -74,9 +73,45 @@
         </div>
     </div>
 </div>
+
+    </div>
+</div>
 </body>
 
 <script>
+
+    var tableList;
+    $(document).ready(function () {
+        var employeeId = getCookie("employeeId");
+        tableList = $("#meetingsTable");
+        $.ajax({
+            url: "http://localhost:8080//meetings/findByEmployee/" + employeeId,
+            method: "get",
+            data: "json",
+            success: function (data) {
+                tableList.empty();
+                tableList.append("<th>Host</th><th>Room</th><th>Visitor</th><th>Date</th><th>Interval</th><th>Details</th>");
+                for(var i = 0; i < data.length; i++) {
+                    addTableRow(data[i]);
+                }
+            }
+        });
+    });
+
+    function addTableRow(meeting) {
+        var startDate = new Date(meeting.timeBegin );
+        var endDate = new Date(meeting.timeEnd);
+
+        tableList.append("<tr>" +
+                "<td>" + meeting.employee.email+"</td>" +
+                "<td>" + meeting.room.name +"</td>" +
+                "<td>" + meeting.visitor.name +"</td>" +
+                "<td>" + moment(startDate).format("DD-MM-YYYY") + "</td>" +
+                "<td>" + moment(startDate).format("h:mm") + " - " +
+                       + " " + moment(endDate).format("h:mm") + "</td>" +
+                "<td>" + meeting.room.details +"</td>" +
+                "</tr>");
+    }
 
 </script>
 </html>
