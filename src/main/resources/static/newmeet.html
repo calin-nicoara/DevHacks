@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ReceptioneraPorno</title>
+    <title>Buildo</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
     <link rel="stylesheet" href="css/jquery-ui.structure.css">
@@ -69,7 +69,7 @@
                         <button type="submit" class="btn btn-default" id="submitButton">Save</button>
                     </div>
                     <div class="col-lg-6 col-lg-offset-1">
-                        <button class="btn btn-default">Back</button>
+                        <a href="http://localhost:8080/options.html" class="btn btn-default">Back</a>
                     </div>
                 </div>
             </form>
@@ -84,37 +84,52 @@
     $(document).ready(function() {
         $('#startTime').datetimepicker();
         $('#endTime').datetimepicker();
-        var editMeeting = false;
         employeeId = getCookie("employeeId");
-        if(editMeeting) {
-            $.ajax({
-                url: "/meetings/-3",
-                method: "GET",
-                dataType: "json",
-                success: function (data) {
-                    $('#startTime').val(data.timeBegin);
-                    $('#endTime').val(data.timeEnd);
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
                 }
-            });
-            $.ajax({
-                url: "/meetings/-3/visitor",
-                method: "GET",
-                dataType: "json",
-                success: function (data) {
-                    $('#nameVisitor').val(data.name);
-                    $('#emailVisitor').val(data.email);
-                    $('#telVisitor').val(data.phone);
-                }
-            });
-            $.ajax({
-                url: "/meetings/-3/room",
-                method: "GET",
-                dataType: "json",
-                success: function (data) {
-                    $('#meetRoom').val(data.name);
-                }
-            });
-        }
+            }
+        };
+
+        var id = getUrlParameter('id');
+        $.ajax({
+            url: "/meetings/"+id,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#startTime').val(data.timeBegin);
+                $('#endTime').val(data.timeEnd)
+            }
+        });
+
+        $.ajax({
+            url: "/meetings/" + id + "/visitor",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#nameVisitor').val(data.name);
+                $('#emailVisitor').val(data.email);
+                $('#telVisitor').val(data.phone)
+            }
+        });
+
+        $.ajax({
+            url: "/meetings/" + id + "/room",
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                $('#meetRoom').val(data.name);
+            }
+        });
 
 
         $("#submitButton").on('click', function(evt) {
@@ -132,7 +147,7 @@
                     employeeId: employeeId
                 },
                 success: function(data) {
-
+                    window.location = "http://localhost:8080/options.html";
                 }
             });
 

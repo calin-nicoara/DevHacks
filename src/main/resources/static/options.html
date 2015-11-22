@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ReceptioneraPorno</title>
+    <title>Buildo</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap-theme.css">
     <link rel="stylesheet" href="css/jquery-ui.structure.css">
@@ -16,15 +16,16 @@
     <script type="text/javascript" src="js/functions.js"></script>
 </head>
 <body>
-    <div class="container-fluid centerDiv">
-        <div class="col-md-4">
-            <img src="images/buildo1.png" class="img-responsive" alt="buildo1">
-            <h1 class="h3Buildo1">Scheduled Meetings</h1>
+<div class="container-fluid centerDiv">
+    <div class="col-md-4">
+        <img src="images/buildo1.png" class="img-responsive" alt="buildo1">
+
+        <h1 class="h3Buildo1">Scheduled Meetings</h1>
 
 
-        </div>
-        <div class="col-md-8">
-            <div class="row">
+    </div>
+    <div class="col-md-8">
+        <div class="row">
             <div class="table-responsive">
                 <table class="table" id="meetingsTable">
                     <thead>
@@ -40,12 +41,15 @@
                 </table>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-default btn-lg" aria-label="Add Meeting">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true">Add Meeting</span>
+                <a href="http://localhost:8080/newmeet.html">
+                <button type="button" class="btn btn-default btn-lg" aria-label="Add Meeting" style="margin-left: 15px">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
-                </div>
+                    </a>
+            </div>
         </div>
-
+    </div>
+</div>
 </body>
 
 <script>
@@ -60,35 +64,51 @@
             data: "json",
             success: function (data) {
                 tableList.empty();
-                tableList.append("<th>Host</th><th>Room</th><th>Visitor</th><th>Date</th><th>Interval</th><th>Details</th>");
-                for(var i = 0; i < data.length; i++) {
+                tableList.append("<th class='text-center' >Host</th><th <th class='text-center'>Room</th><th <th class='text-center'>Guest</th><th <th class='text-center' style='width: 100px'>Date</th><th <th class='text-center' style='width: 100px'>Interval</th><th class='text-center'>Buildo Code</th>");
+                for (var i = 0; i < data.length; i++) {
                     addTableRow(data[i]);
                 }
+                $(".delButton").on('click', function () {
+                    var jaja = $(".delButton").attr('id');
+                    $.ajax({
+                        url: "/meetings/"+jaja,
+                        method: "DELETE",
+                        dataType: "json",
+                        success: function () {
+                            $("#"+jaja).closest('tr').remove();
+
+                        }
+                    });
+                });
             }
         });
     });
 
+
+
     function addTableRow(meeting) {
-        var startDate = new Date(meeting.timeBegin );
+        var startDate = new Date(meeting.timeBegin);
         var endDate = new Date(meeting.timeEnd);
 
         tableList.append("<tr>" +
-                "<td>" + meeting.employee.email+"</td>" +
-                "<td>" + meeting.room.name +"</td>" +
-                "<td>" + meeting.visitor.name +"</td>" +
+                "<td>" + meeting.employee.name + "</td>" +
+                "<td>" + meeting.room.name + "</td>" +
+                "<td>" + meeting.visitor.name + "</td>" +
                 "<td>" + moment(startDate).format("DD-MM-YYYY") + "</td>" +
-                "<td>" + moment(startDate).format("h:mm") + " - " +
-                       + " " + moment(endDate).format("h:mm") + "</td>" +
-                "<td>" + meeting.room.details +"</td>" +
-                        "<td>" + "<button type=\"button\" class=\"btn btn-default\" aria-label=\"remove\">" +
-                         "<span class=\"glyphicon glyphicon-wrench\" aria-hidden=\"true\"></span>" +
-                        "</button> <td>" +
-                        "<button type=\"button\" class=\"btn btn-default\" aria-label=\"remove\">" +
-                        "<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>" +
-                        "</button>" +
-                        "</td></td>" +
-                         "</tr>");
+                "<td>" + moment(startDate).format("h:mm") + " - " + +" " + moment(endDate).format("h:mm") + "</td>" +
+                "<td>" + meeting.code + "</td>" +
+                "<td>" + "<a href=\"http://localhost:8080/newmeet.html?id=" + meeting.id +"\" class=\"btn btn-default\" aria-label=\"remove\">" +
+                "<span class=\"glyphicon glyphicon-wrench\" aria-hidden=\"true\"></span>" +
+                "</a></td>" +
+                "<td><button id=\"" + meeting.id + "\" class=\"btn btn-default delButton\" aria-label=\"remove\">" +
+                "<span class=\"glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>" +
+                "</button>" +
+                "</td>" +
+                "</tr>");
+
     }
+
+
 
 </script>
 </html>
